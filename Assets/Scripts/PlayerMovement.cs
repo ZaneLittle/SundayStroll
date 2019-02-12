@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 	private bool canJump;
 	public int jumpForce;
-	public int moveSpeed;
+	public float moveSpeed;
 
 	// Start is called before the first frame update
 	void Start()
@@ -20,32 +20,34 @@ public class PlayerMovement : MonoBehaviour
 		//If up was presed
 		if(Input.GetKey("up"))
 		{
-			Debug.Log("here");
 			//Jump
 			if(canJump)
 			{
-			Debug.Log("here");
 				canJump = false;
+				//Stopping the vertical velocty
+				Vector3 v = GetComponent<Rigidbody2D>().velocity;
+				v.y = 0f;
+				GetComponent<Rigidbody2D>().velocity = v;
+
 				GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 			}
-
 		}
 
 		//Adding left and right movement
 		if(Input.GetKey("right"))
 		{
 			//Adding constraints to the movement
-			if(transform.position.x < 9)
+			if(transform.position.x < 8.5)
 			{
-				transform.position += (new Vector3(1, 0, 0) * moveSpeed);
+				transform.position += (new Vector3(0.1f, 0, 0) * moveSpeed);
 			}
 		}
 		if(Input.GetKey("left"))
 		{
 			//Adding constraints to the movement
-			if(transform.position.x > -9)
+			if(transform.position.x > -8.5)
 			{
-				transform.position += (new Vector3(-1, 0, 0) * moveSpeed);
+				transform.position += (new Vector3(-0.1f, 0, 0) * moveSpeed);
 			}
 		}
 	}
