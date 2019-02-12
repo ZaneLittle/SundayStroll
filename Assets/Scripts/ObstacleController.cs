@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
+    public float speed = -0.05f; // Movement in the negative X plane
+
     void Start()
     {
         // TODO: add starting position       
@@ -11,6 +13,6 @@ public class ObstacleController : MonoBehaviour
 
     private void Update()
     {
-        // TODO: add movement
+        transform.position += new Vector3(speed, 0, 0);
     }
 }
