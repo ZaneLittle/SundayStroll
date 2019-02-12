@@ -20,9 +20,11 @@ public class PlayerMovement : MonoBehaviour
 		//If up was presed
 		if(Input.GetKey("up"))
 		{
+			Debug.Log("here");
 			//Jump
 			if(canJump)
 			{
+			Debug.Log("here");
 				canJump = false;
 				GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 			}
