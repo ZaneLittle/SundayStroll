@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	private bool canJump;
+	private bool onGround;
 	public int jumpForce;
 	public float moveSpeed;
+	public float duckMult;
+	private Vector3 defaultScale;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		canJump = true;
+		onGround = true;
+		defaultScale = transform.localScale;
 	}
 
 	// Update is called once per frame
@@ -21,9 +24,10 @@ public class PlayerMovement : MonoBehaviour
 		if(Input.GetKey("up"))
 		{
 			//Jump
-			if(canJump)
+			if(onGround)
 			{
-				canJump = false;
+				onGround = false;
+
 				//Stopping the vertical velocty
 				Vector3 v = GetComponent<Rigidbody2D>().velocity;
 				v.y = 0f;
@@ -33,11 +37,23 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 
+		//If theyre ducking and on the ground
+		if(Input.GetKey("down") && onGround)
+		{
+			//Shrink them
+			transform.localScale = new Vector3(defaultScale.x, defaultScale.y*duckMult, defaultScale.z);
+		}
+		else
+		{
+			//Otherwise, return to normal scale
+			transform.localScale = defaultScale;
+		}
+
 		//Adding left and right movement
 		if(Input.GetKey("right"))
 		{
 			//Adding constraints to the movement
-			if(transform.position.x < 8.5)
+			if(transform.position.x < 8)
 			{
 				transform.position += (new Vector3(0.1f, 0, 0) * moveSpeed);
 			}
@@ -45,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 		if(Input.GetKey("left"))
 		{
 			//Adding constraints to the movement
-			if(transform.position.x > -8.5)
+			if(transform.position.x > -8)
 			{
 				transform.position += (new Vector3(-0.1f, 0, 0) * moveSpeed);
 			}
@@ -56,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if(other.gameObject.tag == "Ground")
 		{
-			canJump = true;
+			onGround = true;
 		}
 	}
 }
