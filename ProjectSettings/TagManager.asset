@@ -43,3 +43,39 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Layer9
+    uniqueID: 1898238971
+    locked: 0
+  - name: Layer8
+    uniqueID: 962855555
+    locked: 0
+  - name: Layer7
+    uniqueID: 922818367
+    locked: 0
+  - name: Layer6
+    uniqueID: 3020601205
+    locked: 0
+  - name: Layer5
+    uniqueID: 2429070727
+    locked: 0
+  - name: Layer4
+    uniqueID: 43796103
+    locked: 0
+  - name: Layer3
+    uniqueID: 3128916867
+    locked: 0
+  - name: Layer2
+    uniqueID: 3013467677
+    locked: 0
+  - name: Layer1
+    uniqueID: 2320561589
+    locked: 0
+  - name: Layer0
+    uniqueID: 1531510047
+    locked: 0
+  - name: Player
+    uniqueID: 3333599353
+    locked: 0
+  - name: Obstacle
+    uniqueID: 1632697243
+    locked: 0
