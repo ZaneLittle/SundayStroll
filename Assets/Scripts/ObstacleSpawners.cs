@@ -12,7 +12,7 @@ public class ObstacleSpawners : MonoBehaviour
     public int inverseSpawnRate;    // Denominator of spawn probability
     public float buffer;            // Min time between spawns
     
-     IEnumerator spawn()
+     private IEnumerator spawn()
      {
         while (true)
         {
@@ -28,7 +28,7 @@ public class ObstacleSpawners : MonoBehaviour
         }
      }
 
-    void Start()
+    private void Start()
     {
         x = 11.0f;
         y = new float[3] {
