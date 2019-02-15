@@ -9,16 +9,14 @@ public class PlayerMovement : MonoBehaviour
 	public float moveSpeed;
 	public float duckMult;
 	private Vector3 defaultScale;
-
-	// Start is called before the first frame update
-	void Start()
+    
+	private void Start()
 	{
 		onGround = true;
 		defaultScale = transform.localScale;
 	}
-
-	// Update is called once per frame
-	void Update()
+    
+	private void Update()
 	{
 		//If up was presed
 		if(Input.GetKey("up"))

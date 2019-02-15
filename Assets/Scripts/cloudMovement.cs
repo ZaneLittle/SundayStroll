@@ -6,8 +6,7 @@ public class cloudMovement : MonoBehaviour
 {
 	private float speed;
 
-	// Start is called before the first frame update
-	void Start()
+	private void Start()
 	{
 		//Give the cloud a random speed
 		speed = Random.Range(0.0005f, 0.005f);
@@ -15,8 +14,7 @@ public class cloudMovement : MonoBehaviour
 		speed *= (Random.Range(0, 2) * 2)-1;
 	}
 
-	// Update is called once per frame
-	void Update()
+	private void Update()
 	{
 		transform.position += new Vector3(speed, 0, 0);
 

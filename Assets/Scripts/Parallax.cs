@@ -8,7 +8,7 @@ public class Parallax : MonoBehaviour
 	public float speed;
 	public float relateSpeed;
 
-	void Start()
+	private void Start()
 	{
 		//Create 3 spriteObjects for each layer
 		for(int i = 0; i < layers.Count; i++)
