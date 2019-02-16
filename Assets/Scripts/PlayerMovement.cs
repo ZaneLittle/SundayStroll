@@ -19,20 +19,26 @@ public class PlayerMovement : MonoBehaviour
 	private void Update()
 	{
 		//If up was presed
-		if(Input.GetKey("up"))
+		if(Input.GetKey("up") && onGround)
 		{
+
+			//Stop the emission of the ground particle effects
+			ParticleSystem ps = transform.Find("GroundParticle").gameObject.GetComponent<ParticleSystem>();
+			ps.Stop();
+
+			//Play Particle burst
+			ParticleSystem psb = transform.Find("GroundParticle Burst").gameObject.GetComponent<ParticleSystem>();
+			psb.Play();
+
 			//Jump
-			if(onGround)
-			{
-				onGround = false;
+			onGround = false;
 
-				//Stopping the vertical velocty
-				Vector3 v = GetComponent<Rigidbody2D>().velocity;
-				v.y = 0f;
-				GetComponent<Rigidbody2D>().velocity = v;
+			//Stopping the vertical velocty
+			Vector3 v = GetComponent<Rigidbody2D>().velocity;
+			v.y = 0f;
+			GetComponent<Rigidbody2D>().velocity = v;
 
-				GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-			}
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 		}
 
 		//If theyre ducking and on the ground
@@ -71,6 +77,14 @@ public class PlayerMovement : MonoBehaviour
 		if(other.gameObject.tag == "Ground")
 		{
 			onGround = true;
+
+			//Play Particle burst
+			ParticleSystem psb = transform.Find("GroundParticle Burst").gameObject.GetComponent<ParticleSystem>();
+			psb.Play();
+
+			//Play the ground particle effects
+			ParticleSystem ps = transform.Find("GroundParticle").gameObject.GetComponent<ParticleSystem>();
+			ps.Play();
 		}
 	}
 }
