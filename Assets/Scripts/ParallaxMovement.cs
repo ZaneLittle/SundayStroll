@@ -7,15 +7,24 @@ public class ParallaxMovement : MonoBehaviour
 	private float speed;
 	public int layer;
 
+    private void setSpeed()
+    {
+        Parallax p = this.gameObject.GetComponentInParent<Parallax>();
+
+        speed = (
+            GameplayManager.getSpeed() - (
+                layer * GameplayManager.getSpeed() / 10.0f
+            ) * p.relateSpeed);
+    }
+
 	private void Start()
 	{
-		Parallax p = this.gameObject.GetComponentInParent<Parallax>();
-		
-		speed = (p.speed - (layer * p.speed/10.0f)*p.relateSpeed);
+        setSpeed();
 	}
 
 	private void Update()
 	{
+        setSpeed();
 		transform.position = new Vector3(transform.position.x-speed, transform.position.y, transform.position.z);
 		if(transform.position.x < -8.85f*2)
 		{

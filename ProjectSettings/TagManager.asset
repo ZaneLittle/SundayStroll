@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Obstacle
   - Ground
+  - RestartText
+  - ScoreText
+  - FinalScoreText
+  - GameOverText
   layers:
   - Default
   - TransparentFX

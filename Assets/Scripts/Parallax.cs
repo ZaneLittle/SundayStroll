@@ -5,11 +5,12 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
 	public List<GameObject> layers;
-	public float speed;
 	public float relateSpeed;
 
 	private void Start()
 	{
+        relateSpeed = 0.75f;
+
 		//Create 3 spriteObjects for each layer
 		for(int i = 0; i < layers.Count; i++)
 		{
