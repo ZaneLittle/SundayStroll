@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerHitbox : MonoBehaviour
 {
-	public ParticleSystem ps;
 	private bool hit;
 
-	private void Start()
+	public ParticleSystem ps;
+
+    private void Start()
 	{
 		hit = false;
 	}
@@ -18,19 +19,19 @@ public class PlayerHitbox : MonoBehaviour
 		if(other.gameObject.tag == "Obstacle" && !hit)
 		{
 			hit = true;
+			Debug.Log("Player was hit.");
+            Vector3 pos = other.gameObject.transform.position;
 			
-			Vector3 pos = other.gameObject.transform.position;
-			//Delete the object
+            // Delete the obstacle
 			Destroy(other.gameObject);
 
-			//Spawn particles
+			// Spawn particles
 			Instantiate(ps, pos, Quaternion.identity);
 
-			//Player was hit
-			Debug.Log("Player was hit. Restart the game");
-			
-			//Reset the game. Do this after a timer or after particle disappears
-			//TODO Reset Scene
-		}
+            // TODO: initiate death animation
+
+            StartCoroutine(GameplayManager.endGame());
+            //GameplayManager.endGame();
+        }
 	}
 }

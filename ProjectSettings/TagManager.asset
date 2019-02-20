@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Obstacle
   - Ground
+  - RestartText
+  - ScoreText
+  - FinalScoreText
+  - GameOverText
+  - GroundParticle
+  - GroundParticleBurst
+  - RestartButton
   layers:
   - Default
   - TransparentFX

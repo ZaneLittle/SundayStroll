@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleSpawners : MonoBehaviour
+public class ObstacleSpawner : MonoBehaviour
 {
     private float x;
     private float[] y;
@@ -16,14 +16,25 @@ public class ObstacleSpawners : MonoBehaviour
      {
         while (true)
         {
-
-            int obstacleNum = Random.Range(0, inverseSpawnRate + 3);
-            if (obstacleNum < 3)
+            if (GameplayManager.getGameplay())
             {
-                Vector3 position = new Vector3(x, y[obstacleNum], 0);
-                Transform obstacle = Instantiate(obstaclePrefab, position, Quaternion.identity);
-                obstacle.parent = parent;
-                yield return new WaitForSeconds(buffer);
+                int obstacleNum = Random.Range(0, inverseSpawnRate + 3);
+                if (obstacleNum < 3)
+                {
+                    Vector3 position = new Vector3(x, y[obstacleNum], 0);
+                    Transform obstacle = Instantiate
+                    (
+                        obstaclePrefab,
+                        position,
+                        Quaternion.identity
+                    );
+                    obstacle.parent = parent;
+                    yield return new WaitForSeconds(buffer);
+                }
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.001f);
             }
         }
      }
@@ -38,6 +49,7 @@ public class ObstacleSpawners : MonoBehaviour
         };
         inverseSpawnRate = 10;
         buffer = 3.0f;
+
         StartCoroutine(spawn());
     }
 }

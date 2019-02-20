@@ -19,15 +19,21 @@ public class PlayerMovement : MonoBehaviour
 	private void Update()
 	{
 		//If up was presed
-		if(Input.GetKey("up") && onGround)
+		if(Input.GetKey("up") && onGround && GameplayManager.getGameplay())
 		{
 
 			//Stop the emission of the ground particle effects
-			ParticleSystem ps = transform.Find("GroundParticle").gameObject.GetComponent<ParticleSystem>();
+			ParticleSystem ps = transform
+                .Find("GroundParticle")
+                .gameObject
+                .GetComponent<ParticleSystem>();
 			ps.Stop();
 
 			//Play Particle burst
-			ParticleSystem psb = transform.Find("GroundParticle Burst").gameObject.GetComponent<ParticleSystem>();
+			ParticleSystem psb = transform
+                .Find("GroundParticle Burst")
+                .gameObject
+                .GetComponent<ParticleSystem>();
 			psb.Play();
 
 			//Jump
@@ -38,14 +44,20 @@ public class PlayerMovement : MonoBehaviour
 			v.y = 0f;
 			GetComponent<Rigidbody2D>().velocity = v;
 
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+			GetComponent<Rigidbody2D>()
+                .AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 		}
 
 		//If theyre ducking and on the ground
-		if(Input.GetKey("down") && onGround)
+		if(Input.GetKey("down") && onGround && GameplayManager.getGameplay())
 		{
 			//Shrink them
-			transform.localScale = new Vector3(defaultScale.x, defaultScale.y*duckMult, defaultScale.z);
+			transform.localScale = new Vector3
+            (
+                defaultScale.x, 
+                defaultScale.y*duckMult, 
+                defaultScale.z
+            );
 		}
 		else
 		{
@@ -54,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		//Adding left and right movement
-		if(Input.GetKey("right"))
+		if(Input.GetKey("right") && GameplayManager.getGameplay())
 		{
 			//Adding constraints to the movement
 			if(transform.position.x < 8)
@@ -62,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 				transform.position += (new Vector3(0.1f, 0, 0) * moveSpeed);
 			}
 		}
-		if(Input.GetKey("left"))
+		if(Input.GetKey("left") && GameplayManager.getGameplay())
 		{
 			//Adding constraints to the movement
 			if(transform.position.x > -8)
@@ -79,11 +91,17 @@ public class PlayerMovement : MonoBehaviour
 			onGround = true;
 
 			//Play Particle burst
-			ParticleSystem psb = transform.Find("GroundParticle Burst").gameObject.GetComponent<ParticleSystem>();
+			ParticleSystem psb = transform
+                .Find("GroundParticle Burst")
+                .gameObject
+                .GetComponent<ParticleSystem>();
 			psb.Play();
 
 			//Play the ground particle effects
-			ParticleSystem ps = transform.Find("GroundParticle").gameObject.GetComponent<ParticleSystem>();
+			ParticleSystem ps = transform
+                .Find("GroundParticle")
+                .gameObject
+                .GetComponent<ParticleSystem>();
 			ps.Play();
 		}
 	}
