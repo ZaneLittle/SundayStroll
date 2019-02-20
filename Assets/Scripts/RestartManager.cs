@@ -6,10 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class RestartManager : MonoBehaviour
 {
-    // TODO: Doesnt work with UI Text
-    private void OnMouseUp()
+    public Button restartButton;
+
+    private void resetGame()
     {
         Debug.Log("Resetting scene.");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void Start()
+    {
+        restartButton.interactable = false;
+        restartButton.onClick.AddListener(() => resetGame());
     }
 }

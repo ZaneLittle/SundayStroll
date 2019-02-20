@@ -31,6 +31,7 @@ public class PlayerHitbox : MonoBehaviour
             // TODO: initiate death animation
 
             StartCoroutine(GameplayManager.endGame());
-		}
+            //GameplayManager.endGame();
+        }
 	}
 }

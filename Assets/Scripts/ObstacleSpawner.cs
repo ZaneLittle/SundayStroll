@@ -16,18 +16,25 @@ public class ObstacleSpawner : MonoBehaviour
      {
         while (true)
         {
-            int obstacleNum = Random.Range(0, inverseSpawnRate + 3);
-            if ((obstacleNum < 3) && GameplayManager.getGameplay())
+            if (GameplayManager.getGameplay())
             {
-                Vector3 position = new Vector3(x, y[obstacleNum], 0);
-                Transform obstacle = Instantiate
-                (
-                    obstaclePrefab, 
-                    position,
-                    Quaternion.identity
-                );
-                obstacle.parent = parent;
-                yield return new WaitForSeconds(buffer);
+                int obstacleNum = Random.Range(0, inverseSpawnRate + 3);
+                if (obstacleNum < 3)
+                {
+                    Vector3 position = new Vector3(x, y[obstacleNum], 0);
+                    Transform obstacle = Instantiate
+                    (
+                        obstaclePrefab,
+                        position,
+                        Quaternion.identity
+                    );
+                    obstacle.parent = parent;
+                    yield return new WaitForSeconds(buffer);
+                }
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.001f);
             }
         }
      }

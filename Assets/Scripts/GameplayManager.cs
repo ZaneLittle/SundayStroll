@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameplayManager : MonoBehaviour
 {
-    private static float particleBuffer;// Wait between death and rendering game over screen
+    private static float particleBuffer; // Wait between death and rendering game over screen
     private static float score;         // Player's score
     private static float speed;         // Base speed of elements along the X plane
     private static bool gameplay;       // Denotes if the game is currently running
@@ -14,6 +14,7 @@ public class GameplayManager : MonoBehaviour
     public static Text finalScoreText;
     public static Text restartText;
     public static Text scoreText;
+    public static Button restartButton;
 
     public static void increaseScore(float increment)
     {
@@ -25,6 +26,11 @@ public class GameplayManager : MonoBehaviour
         return gameplay;
     }
 
+    public static void setGameplay(bool state)
+    {
+        gameplay = state;
+    }
+
     public static float getSpeed()
     {
         return speed;
@@ -32,7 +38,7 @@ public class GameplayManager : MonoBehaviour
 
     public static IEnumerator endGame()
     {
-        gameplay = false;
+        setGameplay(false);
 
         // Slow down to 0
         while (speed > 0)
@@ -45,6 +51,12 @@ public class GameplayManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+        // Stop ground particles
+        ParticleSystem ps = GameObject
+            .FindWithTag("GroundParticle")
+            .GetComponent<ParticleSystem>();
+        ps.Stop();
+
         // Buffer for animations
         yield return new WaitForSeconds(particleBuffer);
 
@@ -52,6 +64,7 @@ public class GameplayManager : MonoBehaviour
         gameOverText.text = "Game Over";
         finalScoreText.text = "Score: " + score.ToString("0.00");
         restartText.text = "[Click to Restart]";
+        restartButton.interactable = true;
     }
 
     private void Start()
@@ -69,6 +82,9 @@ public class GameplayManager : MonoBehaviour
         scoreText = GameObject
             .FindWithTag("ScoreText")
     .       GetComponent<Text>() as Text;
+        restartButton = GameObject
+            .FindWithTag("RestartButton")
+            .GetComponent<Button>();
 
         // Instantiate properties
         score = 0;
