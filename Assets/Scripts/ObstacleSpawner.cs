@@ -34,7 +34,7 @@ public class ObstacleSpawner : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSeconds(0.001f);
+                yield return new WaitForEndOfFrame();
             }
         }
      }
@@ -45,7 +45,7 @@ public class ObstacleSpawner : MonoBehaviour
         y = new float[3] {
             -3.65f, // Head height obstacle
             -2.3f,  // Ground height obstacle
-            -5.0f   // Hole obstacle
+            -4.9f   // Hole obstacle
         };
         inverseSpawnRate = 10;
         buffer = 3.0f;
