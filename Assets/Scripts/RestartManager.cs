@@ -12,16 +12,16 @@ public class RestartManager : MonoBehaviour
 
     private IEnumerator resetScene()
     {
-        transitioning = true; // Lock corountine from multiple instances
+        // Lock corountine from multiple instances and log action
+        transitioning = true; 
         Debug.Log("Resetting scene.");
 
-        AsyncOperation resetAsync = SceneManager
-            .LoadSceneAsync(
-                SceneManager.GetActiveScene().name
-            );
+        AsyncOperation resetAsync = SceneManager.LoadSceneAsync
+        (
+            SceneManager.GetActiveScene().name
+        );
 
         yield return resetAsync;
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void Update()
