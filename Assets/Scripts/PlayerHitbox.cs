@@ -4,34 +4,60 @@ using UnityEngine;
 
 public class PlayerHitbox : MonoBehaviour
 {
-	private bool hit;
+    private bool hit;
 
-	public ParticleSystem ps;
+    public ParticleSystem ps;
+    public Collider2D groundCollider;
 
     private void Start()
-	{
-		hit = false;
-	}
+    {
+        hit = false;
+    }
 
 
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		if(other.gameObject.tag == "Obstacle" && !hit)
-		{
-			hit = true;
-			Debug.Log("Player was hit.");
-            Vector3 pos = other.gameObject.transform.position;
-			
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Obstacle" && !hit)
+        {
+            hit = true;
+            Debug.Log("Player was hit.");
+
             // Delete the obstacle
-			Destroy(other.gameObject);
+            Destroy(other.gameObject);
 
-			// Spawn particles
-			Instantiate(ps, pos, Quaternion.identity);
+            // Spawn particles
+            Instantiate
+            (
+                ps, 
+                gameObject.transform.position, 
+                Quaternion.identity
+            );
 
             // TODO: initiate death animation
 
             StartCoroutine(GameplayManager.endGame());
-            //GameplayManager.endGame();
         }
-	}
+        else if (other.gameObject.tag == "HoleObstacle" && !hit)
+        {
+            hit = true;
+            Debug.Log("Player fell in a hole.");
+            // Vector3 pos = gameObject.transform.position;
+
+            // TODO: may need to be refactored to be smoother
+            // but ya know what? its good for now.
+            // Move player into region of hole
+            transform.position = new Vector3(
+                (transform.position.x + other.transform.position.x)/2,
+                transform.position.y,
+                0
+            );
+
+            // Allow player to fall
+            groundCollider.enabled = false;
+            
+            // TODO: initiate falling animation
+
+            StartCoroutine(GameplayManager.endGame());
+        }
+    }
 }

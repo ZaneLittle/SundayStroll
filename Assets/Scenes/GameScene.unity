@@ -290,6 +290,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1029796127 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1194696332, guid: bc7d02c0007fe3144ae0d5aaf087dd9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1425173818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1425173818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -353,6 +359,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: GroundParticleBurst
       objectReference: {fileID: 0}
+    - target: {fileID: 1194696333, guid: bc7d02c0007fe3144ae0d5aaf087dd9f, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194696332, guid: bc7d02c0007fe3144ae0d5aaf087dd9f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194696330, guid: bc7d02c0007fe3144ae0d5aaf087dd9f, type: 3}
+      propertyPath: groundCollider
+      value: 
+      objectReference: {fileID: 1029796127}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc7d02c0007fe3144ae0d5aaf087dd9f, type: 3}
 --- !u!1001 &522452775227466443
@@ -825,5 +843,17 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 613615434}
+    - target: {fileID: 6583739936484421707, guid: 5147639ed5f0fd443a898a2df18dc580,
+        type: 3}
+      propertyPath: genericObstacle
+      value: 
+      objectReference: {fileID: 1250419729211757523, guid: e4ede53c2d0106842a1fafe85cb91699,
+        type: 3}
+    - target: {fileID: 6583739936484421707, guid: 5147639ed5f0fd443a898a2df18dc580,
+        type: 3}
+      propertyPath: holeObstacle
+      value: 
+      objectReference: {fileID: 8092569123692138884, guid: 022dc2ad3a530f946b8b95ed44918a09,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5147639ed5f0fd443a898a2df18dc580, type: 3}
