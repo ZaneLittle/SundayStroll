@@ -26,7 +26,7 @@ public class PlayerHitbox : MonoBehaviour
             Destroy(other.gameObject);
 
             // Spawn particles
-			Instantiate
+            Instantiate
             (
                 ps, 
                 gameObject.transform.position, 
