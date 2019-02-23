@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerHitbox : MonoBehaviour
 {
-	private bool hit;
+    private bool hit;
 
-	public ParticleSystem ps;
+    public ParticleSystem ps;
     public Collider2D groundCollider;
 
     private void Start()
@@ -15,18 +15,19 @@ public class PlayerHitbox : MonoBehaviour
     }
 
 
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		if(other.gameObject.tag == "Obstacle" && !hit)
-		{
-			hit = true;
-			Debug.Log("Player was hit.");
-			
-            // Delete the obstacle
-			Destroy(other.gameObject);
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Obstacle" && !hit)
+        {
+            hit = true;
+            Debug.Log("Player was hit.");
 
-			// Spawn particles
-			Instantiate(
+            // Delete the obstacle
+            Destroy(other.gameObject);
+
+            // Spawn particles
+			Instantiate
+            (
                 ps, 
                 gameObject.transform.position, 
                 Quaternion.identity
