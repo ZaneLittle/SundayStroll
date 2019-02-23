@@ -13,6 +13,7 @@ TagManager:
   - GroundParticle
   - GroundParticleBurst
   - RestartButton
+  - HoleObstacle
   layers:
   - Default
   - TransparentFX
@@ -80,9 +81,9 @@ TagManager:
   - name: Layer0
     uniqueID: 1531510047
     locked: 0
-  - name: Player
-    uniqueID: 3333599353
-    locked: 0
   - name: Obstacle
     uniqueID: 1632697243
+    locked: 0
+  - name: Player
+    uniqueID: 3333599353
     locked: 0
