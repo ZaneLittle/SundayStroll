@@ -6,19 +6,17 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     private float x;
-    private float[] y;
     private Dictionary<float, Transform> obstacles;
 
     public Transform parent;
-    public Transform holeObstacle;
-    public Transform genericObstacle;
     public int inverseSpawnRate;    // Denominator of spawn probability
     public float buffer;            // Min time between spawns
     
      private IEnumerator spawn()
      {
-        Transform obstacle;
         int obstacleNum;
+        Transform obstacle;
+        KeyValuePair<float, Transform> prefab;
         while (true)
         {
             if (GameplayManager.getGameplay())
@@ -26,7 +24,7 @@ public class ObstacleSpawner : MonoBehaviour
                 obstacleNum = Random.Range(0, inverseSpawnRate + 3);
                 if (obstacleNum < obstacles.Count)
                 {
-                    KeyValuePair<float, Transform> prefab = 
+                    prefab = 
                         obstacles.ElementAt(obstacleNum);
                     obstacle = Instantiate
                         (
