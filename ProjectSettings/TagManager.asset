@@ -78,6 +78,9 @@ TagManager:
   - name: Layer1
     uniqueID: 2320561589
     locked: 0
+  - name: Rock
+    uniqueID: 3378535423
+    locked: 0
   - name: Layer0
     uniqueID: 1531510047
     locked: 0
