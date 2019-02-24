@@ -57,8 +57,8 @@ public class ObstacleSpawner : MonoBehaviour
         );
         obstacles.Add
         (
-            -3.65f,
-            (Transform)Resources.Load("prefabs/obstacles/GenericObstacle", typeof(Transform))
+            -4.2f,
+            (Transform) Resources.Load("prefabs/obstacles/RockObstacle", typeof(Transform))
         );
         obstacles.Add
         (
